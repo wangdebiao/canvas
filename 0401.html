@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="../public/jquery-3.2.0.min.js"></script>
+	</head>
+	<style>
+		canvas{
+			background: #EEEEEE;
+		}
+	</style>
+	<body>
+		<img src="../0321/work/public/timg.jpg" alt="" hidden/>
+		<canvas id="" width="600" height="600">
+			您的浏览器不支持canvas
+			
+		</canvas>
+		<input type="button" value="线" class="xian"/>
+			<input type="button" value="矩形" class="juxin"/>
+	</body>
+	<script type="text/javascript">
+		var canvas=document.querySelector("canvas");
+		var cobj=canvas.getContext("2d");//绘制2d图形
+//		//填充及颜色
+//		cobj.fillStyle="red";
+//		cobj.fillRect(0,0,100,100);//fill填充，fillRect填充过的矩形
+//		cobj.fillStyle="blue";
+//		cobj.fillRect(100,100,100,100);
+//		//边框及颜色
+//		cobj.strokeStyle="green";
+//		cobj.strokeRect(100,0,100,100);
+//		cobj.strokeStyle="black";
+//		cobj.strokeRect(0,100,100,100);
+//		//阴影
+//		cobj.shadowColor="#000";
+//		cobj.shadowBlur=10;
+//		cobj.shadowOffsetX=10;
+//		cobj.shadowOffsetY=10;
+//		cobj.strokeStyle="black";
+//		cobj.strokeRect(200,200,100,100);
+//		//径向渐变
+//		var colorobj=cobj.createRadialGradient(250,50,10,250,50,50)
+//		colorobj.addColorStop(0,"red");
+//		colorobj.addColorStop(0.5,"green");
+//		colorobj.addColorStop(1,"blue");
+//		cobj.fillStyle=colorobj;
+//		cobj.fillRect(200,0,100,100)
+//		//线性渐变
+//		var colorobj=cobj.createLinearGradient(0,200,200,200);
+//		colorobj.addColorStop(0,"red");
+//		colorobj.addColorStop(0.5,"green");
+//		colorobj.addColorStop(1,"blue");
+//		cobj.fillStyle=colorobj;
+//		cobj.fillRect(0,200,100,100)
+//		
+//		
+//		//图片
+//		var imgobj=document.querySelector("img");
+//		console.log(imgobj)
+//		var obj=cobj.createPattern(imgobj,"no-repeat");
+//		cobj.fillStyle=obj;
+//		cobj.fillRect(200,100,100,100)
+//		
+//		//边框
+//		cobj.strokeStyle="red";
+//		cobj.lineWidth=10;
+//		cobj.strokeRect(5.5,5.5,300,300);
+//		
+//		
+//		
+//		
+//		cobj.beginPath();//绘制任何一个独立的图形都得有这个开始
+//		cobj.rect(0,0,100,100)
+//		cobj.stroke();
+//		
+//		cobj.beginPath();
+//		cobj.rect(120,120,100,100)
+//		cobj.stroke();
+//		
+//		function strokeRect(x,y,w,h){
+//			cobj.beginPath();
+//			cobj.rect(x+0.5,y+0.5,w,h)
+//			cobj.stroke();
+//		}
+//		
+//		function fillRect(x,y,w,h){
+//			cobj.beginPath();
+//			cobj.rect(x,y,w,h)
+//			cobj.fill();
+//		}
+		
+//		cobj.beginPath()
+//		cobj.moveTo(0,0);//当前起点
+//		cobj.lineTo(100,100);//下一个点
+//		cobj.lineTo(0,100);
+//		cobj.lineTo(100,0);
+//		cobj.stroke()
+		
+		
+//		function rect(x,y,w,h){
+//			cobj.beginPath();
+//			cobj.moveTo(x,y);//当前起点
+//			cobj.lineTo(x+w,y);//下一个点
+//			cobj.lineTo(x+w,y+h);
+//			cobj.lineTo(x,y+h);
+//			cobj.closePath();//形成一个封闭的图形
+//			cobj.fill()
+//		}
+//		rect(100,100,100,100)
+//		cobj.clearRect(150,150,10,10)//擦除
+//		
+
+
+
+
+
+function straightLine(){
+	var arr=[];
+	canvas.onmousedown=function(e){
+		var eve=e||window.event;
+		var startX=eve.clientX;
+		var startY=eve.clientY;
+		canvas.onmousemove=function(e){
+			var eve=e||window.event;
+			var endX=eve.clientX;
+			var endY=eve.clientY;
+			cobj.clearRect(0,0,600,600);
+			if(arr.length>0){
+				cobj.putImageData(arr[arr.length-1],0,0)
+			}
+			cobj.beginPath();
+			cobj.moveTo(startX,startY);
+			cobj.lineTo(endX,endY);				
+			cobj.stroke()				
+		}
+		canvas.onmouseup=function(e){
+			arr.push(cobj.getImageData(0,0,600,600));
+			canvas.onmousemove=null;
+			canvas.onmouseup=null;
+		}
+	}
+}
+
+		
+//		function rect(x,y,w,h){
+//			cobj.beginPath();
+//			cobj.moveTo(x,y);//当前起点
+//			cobj.lineTo(x+w,y);//下一个点
+//			cobj.lineTo(x+w,y+h);
+//			cobj.lineTo(x,y+h);
+//			cobj.closePath();//形成一个封闭的图形
+//			cobj.fill()
+//		}
+
+
+
+function rectangle(){
+	var arr=[];
+	canvas.onmousedown=function(e){
+		var eve=e||window.event;
+		var startX=eve.clientX;
+		var startY=eve.clientY;
+		canvas.onmousemove=function(e){
+			var eve=e||window.event;
+			var endX=eve.clientX;
+			var endY=eve.clientY;
+			cobj.clearRect(0,0,600,600);
+			if(arr.length>0){
+				cobj.putImageData(arr[arr.length-1],0,0)
+			}
+			cobj.beginPath();
+			cobj.moveTo(startX,startY);
+			cobj.lineTo(endX,startY)
+			cobj.lineTo(endX,endY)
+			cobj.lineTo(startX,endY)
+			cobj.closePath();			
+			cobj.stroke()		
+		}
+		canvas.onmouseup=function(e){
+			arr.push(cobj.getImageData(0,0,600,600));
+			canvas.onmousemove=null;
+			canvas.onmouseup=null;
+		}
+	}
+}
+rectangle()
+straightLine()
+function he(type){
+	var type=type||"xian";
+	var arr=[];
+	canvas.onmousedown=function(e){
+		var eve=e||window.event;
+		var startX=eve.clientX;
+		var startY=eve.clientY;
+		canvas.onmousemove=function(e){
+			var eve=e||window.event;
+			var endX=eve.clientX;
+			var endY=eve.clientY;
+			cobj.clearRect(0,0,600,600);
+			if(arr.length>0){
+				cobj.putImageData(arr[arr.length-1],0,0)
+			}
+			
+			if(type=="xian"){
+				cobj.beginPath();
+				cobj.moveTo(startX,startY);
+				cobj.lineTo(endX,endY);	
+				cobj.stroke()	
+			}else if(type=="juxin"){
+				cobj.beginPath();
+				cobj.moveTo(startX,startY);
+				cobj.lineTo(endX,startY)
+				cobj.lineTo(endX,endY)
+				cobj.lineTo(startX,endY)
+				cobj.closePath();
+				cobj.stroke()	
+			}
+			
+				
+		}
+		canvas.onmouseup=function(e){
+			arr.push(cobj.getImageData(0,0,600,600));
+			canvas.onmousemove=null;
+			canvas.onmouseup=null;
+		}
+	}
+}
+
+$(".xian").click(function(){
+	he("xian")
+})
+$(".juxin").click(function(){
+	he("juxin")
+})
+
+
+
+
+//		cobj.fillRect(0,0,100,100)
+//		var data=cobj.getImageData(0,0,100,100)
+//		cobj.putImageData(data,100,100)
+//		console.log(data)
+		
+		
+		
+	</script>
+</html>
